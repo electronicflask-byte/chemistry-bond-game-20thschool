@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>اكتشفي هويتي | تحدي الروابط التساهمية</title>
+<style>
+:root{--bg:#081426;--panel:#10243c;--pale:#c9d9eb;--gold:#ffce78;--cyan:#62e2e0;--white:#fafcff}
+*{box-sizing:border-box}
+body{margin:0;color:var(--white);font-family:Tahoma,'Segoe UI',sans-serif;background:radial-gradient(ellipse at 15% 10%,#1b3c5e 0,transparent 35%),radial-gradient(ellipse at 90% 70%,#163e55 0,transparent 35%),var(--bg);min-height:100vh}
+.wrap{max-width:1240px;margin:auto;padding:28px 22px 46px}
+header{text-align:center}
+.eyebrow{letter-spacing:1px;color:var(--cyan);font-size:15px;font-weight:700}
+h1{font-size:clamp(34px,5vw,62px);margin:14px 0 9px}
+header p{color:var(--pale);font-size:17px;line-height:1.9;margin:0 auto;max-width:900px}
+.credits{display:flex;justify-content:center;gap:12px 38px;flex-wrap:wrap;margin-top:28px;color:var(--pale);font-size:15px;font-weight:600}.controls{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:24px 0 28px}
+button{font:inherit;border:0;cursor:pointer;transition:transform .15s,background .15s}
+button:hover{transform:translateY(-2px)}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+.btn{padding:12px 20px;border-radius:13px;background:#234260;color:white;border:1px solid #53708d;font-weight:700}
+.btn.primary{background:var(--cyan);color:#06252b;border-color:var(--cyan)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.card{min-height:280px;border-radius:22px;border:1px solid #47617e;background:linear-gradient(155deg,#1a3551,#0e2139);padding:22px;display:flex;flex-direction:column;align-items:center;text-align:center;box-shadow:0 14px 35px #0004;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0 0 auto;height:5px;background:linear-gradient(90deg,var(--cyan),var(--gold))}
+.label{color:var(--cyan);font-weight:700;font-size:15px;margin-top:4px}
+.clue{font-size:18px;line-height:1.95;margin:auto 0;min-height:128px;display:flex;align-items:center;justify-content:center}
+.reveal{width:100%;padding:13px;border-radius:12px;color:#06252b;background:var(--gold);font-weight:800}
+.answer{display:none;flex-direction:column;gap:12px;align-items:center;justify-content:center;flex:1;width:100%;animation:pop .28s ease}
+.card.open .clue{display:none}
+.card.open .answer{display:flex}
+.answer strong{font-size:25px;color:var(--gold)}
+.answer span{color:var(--pale);line-height:1.8;font-size:16px}
+.card.open .reveal{background:#284762;color:white;border:1px solid #66829b}
+@keyframes pop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+@media(max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.card{min-height:250px}.clue{min-height:100px}.wrap{padding:20px 14px}}
+@media print{body{background:#fff;color:#111}.card{background:white;color:#111;box-shadow:none}.clue{display:none!important}.answer{display:flex!important}.answer strong{color:#111}.answer span{color:#444}.controls{display:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <div class="eyebrow">تحدي الكيمياء • نشاط ختامي</div>
+    <h1>اكتشفي هويتي!</h1>
+    <p>أمامك مجموعة من الروابط المجهولة. اقرئي الأدلة، ناقشيها مع مجموعتك، ثم اضغطي على البطاقة لكشف الهوية.</p>
+  </header>
+
+  <div class="controls">
+    <button class="btn primary" onclick="document.documentElement.requestFullscreen?.()">ملء الشاشة</button>
+    <button class="btn" onclick="toggleAll(false)">إعادة إخفاء الإجابات</button>
+    <button class="btn" onclick="toggleAll(true)">كشف جميع الإجابات</button>
+  </div>
+
+  <section class="grid" aria-label="بطاقات الألغاز">
+    <article class="card" id="c4">
+      <div class="label">اللغز الرابع</div>
+      <div class="clue">أتكوّن من زوجين إلكترونيين مشتركين بين ذرتين، وأحتوي على رابطة سيجما واحدة ورابطة باي واحدة. من أنا؟</div>
+      <div class="answer"><strong>رابطة تساهمية ثنائية</strong><span>تتكوّن من 1σ و1π، ومثالها O=O.</span></div>
+      <button class="reveal" onclick="toggle(4)" aria-expanded="false">اكشفي هويتي</button>
+    </article>
+
+    <article class="card" id="c1">
+      <div class="label">اللغز الأول</div>
+      <div class="clue">أتكوّن من تداخل مباشر على امتداد المحور الواصل بين النواتين، وأوجد في كل رابطة تساهمية أحادية أو متعددة. من أنا؟</div>
+      <div class="answer"><strong>رابطة سيجما (σ)</strong><span>تنشأ من تداخل مباشر للأفلاك على محور الرابطة.</span></div>
+      <button class="reveal" onclick="toggle(1)" aria-expanded="false">اكشفي هويتي</button>
+    </article>
+
+    <article class="card" id="c5">
+      <div class="label">اللغز الخامس</div>
+      <div class="clue">أتكوّن من ثلاثة أزواج إلكترونية مشتركة بين ذرتين، وأتضمن رابطة سيجما واحدة ورابطتي باي. من أنا؟</div>
+      <div class="answer"><strong>رابطة تساهمية ثلاثية</strong><span>تتكوّن من 1σ و2π، ومثالها N≡N.</span></div>
+      <button class="reveal" onclick="toggle(5)" aria-expanded="false">اكشفي هويتي</button>
+    </article>
+
+    <article class="card" id="c2">
+      <div class="label">اللغز الثاني</div>
+      <div class="clue">أتكوّن نتيجة تداخل جانبي بين فلكَي p متوازيين، وأظهر إلى جانب سيجما في الروابط الثنائية والثلاثية. من أنا؟</div>
+      <div class="answer"><strong>رابطة باي (π)</strong><span>تنشأ من التداخل الجانبي للأفلاك فوق محور الرابطة وتحته.</span></div>
+      <button class="reveal" onclick="toggle(2)" aria-expanded="false">اكشفي هويتي</button>
+    </article>
+
+    <article class="card" id="c6">
+      <div class="label">اللغز السادس</div>
+      <div class="clue">أنا الرابطة التي تتكوّن أولًا بين الذرتين، ولا يمكن أن تخلو مني أي رابطة تساهمية. فمن أكون؟</div>
+      <div class="answer"><strong>رابطة سيجما (σ)</strong><span>هي أول رابطة تتكوّن بين الذرتين، وتوجد في جميع الروابط التساهمية.</span></div>
+      <button class="reveal" onclick="toggle(6)" aria-expanded="false">اكشفي هويتي</button>
+    </article>
+
+    <article class="card" id="c3">
+      <div class="label">اللغز الثالث</div>
+      <div class="clue">أتكوّن من زوج إلكتروني مشترك واحد بين ذرتين، وأعد أبسط أنواع الروابط التساهمية. من أنا؟</div>
+      <div class="answer"><strong>رابطة تساهمية أحادية</strong><span>تتكوّن من 1σ فقط، ومثالها H—H أو H—Cl.</span></div>
+      <button class="reveal" onclick="toggle(3)" aria-expanded="false">اكشفي هويتي</button>
+    </article>
+  </section>
+    <div class="credits"><span>معلمة المقرر: أ. مشاعل القحطاني</span><span>مديرة المدرسة: أ. منيرة العصيمي</span></div>
+</main>
+
+<script>
+function toggle(n){
+  const card=document.getElementById('c'+n);
+  const show=!card.classList.contains('open');
+  card.classList.toggle('open',show);
+  const b=card.querySelector('button.reveal');
+  b.textContent=show?'إخفاء الإجابة':'اكشفي هويتي';
+  b.setAttribute('aria-expanded',String(show));
+}
+function toggleAll(show){
+  document.querySelectorAll('.card').forEach(card=>{
+    card.classList.toggle('open',show);
+    const b=card.querySelector('button.reveal');
+    b.textContent=show?'إخفاء الإجابة':'اكشفي هويتي';
+    b.setAttribute('aria-expanded',String(show));
+  });
+}
+</script>
+</body>
+</html>
